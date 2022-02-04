@@ -9,6 +9,9 @@ gridItems.forEach((item) => {
         })
 })
 
+const clearButton = document.querySelector('#clear-button')
+clearButton.addEventListener('click', clearPad)
+
 function makeGrid(rows, cols) {
     for (i = 0; i < rows * cols; i++) {
         let gridItem = document.createElement('div');
@@ -17,4 +20,8 @@ function makeGrid(rows, cols) {
 
         container.appendChild(gridItem)
     }
+}
+
+function clearPad() {
+    gridItems.forEach((item) => item.style.backgroundColor = "white")
 }
