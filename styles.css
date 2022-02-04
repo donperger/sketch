@@ -1,5 +1,38 @@
 body {
     margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #424242;
+}
+
+#header {
+    width: 100vw;
+    height: 10vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: coral;
+}
+
+#title {
+    font-size: 30px;
+    font-weight: 900;
+    margin-bottom: 5px;
+}
+
+#clear-button {
+    padding: 5px 10px;
+    font-size: 20px;
+    border: 2px solid #000;
+    border-radius: 5px;
+    background-color: #07070D;
+    color: #F2DCD8;
+}
+
+#clear-button:hover {
+    cursor: pointer;
+    background-color: #022340;
+    transition: 2s;
 }
 
 #container {
