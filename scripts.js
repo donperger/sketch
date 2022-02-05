@@ -62,7 +62,8 @@ function addColor() {
     let gridItems = document.querySelectorAll('.items');
         gridItems.forEach((item) => {
             item.addEventListener('mouseover', () => {
-                if(canDraw) {let splitBGColor = item.style.backgroundColor.split(/\(| |\)/);
+                if(canDraw) {
+                    let splitBGColor = item.style.backgroundColor.split(/\(| |\)/);
         
                     let red = splitBGColor[1].slice(0, -1);
                     let green = splitBGColor[2].slice(0, -1);
