@@ -3,28 +3,28 @@ let canDraw = true;
 
 makeGrid(16, 16);
 
-addInk();
-addShade();
+setItems();
+addColor();
 
 const helpButton = document.getElementById('help');
 helpButton.addEventListener('click', () => {
-    alert("You can draw with your mouse.\nYou can lift up pencil with up arrow key.\nYou can put down pencil with down arrow key.")
+    alert("Draw something with your mouse.\nLift up pencil with up arrow key.\nPut down pencil with down arrow key.\nIf the frame is green you can draw, if it's red you can't.\nClear sketchpad button clears the board and sets up a new one.")
 })
 
 const clearButton = document.querySelector('#clear-button');
-clearButton.addEventListener('click', clearPad);
+clearButton.addEventListener('click', setSketchpad);
 
 document.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowUp') {
         canDraw = false;
-        addShade();
+        document.documentElement.style.setProperty('--frame-color', '#A6270A');  
     }
 })
 
 document.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowDown') {
         canDraw = true;
-        addShade();
+        document.documentElement.style.setProperty('--frame-color', '#50a60a');
     }
 })
 
@@ -39,7 +39,7 @@ function makeGrid(rows, cols) {
     }
 }
 
-function clearPad() {
+function setSketchpad() {
     container.textContent = '';
     let pixel = prompt('How many pixels do you want in one row? (0 to 100)');
     
@@ -47,23 +47,22 @@ function clearPad() {
         pixel = prompt('How many pixels do you want in one row? (1 to 100)');
     }
     makeGrid(pixel, pixel);
-    addInk();
-    addShade();
+    setItems();
+    addColor();
 }
 
-function addInk() {
+function setItems() {
     let gridItems = document.querySelectorAll('.items');
     gridItems.forEach((item) => {
             item.style.backgroundColor = 'rgb( 255, 255, 255)';
     })
 }
 
-function addShade() {
+function addColor() {
     let gridItems = document.querySelectorAll('.items');
         gridItems.forEach((item) => {
-            item.addEventListener('mouseover', (e) => {
-                if (canDraw === true) {
-                    let splitBGColor = item.style.backgroundColor.split(/\(| |\)/);
+            item.addEventListener('mouseover', () => {
+                if(canDraw) {let splitBGColor = item.style.backgroundColor.split(/\(| |\)/);
         
                     let red = splitBGColor[1].slice(0, -1);
                     let green = splitBGColor[2].slice(0, -1);
@@ -76,7 +75,6 @@ function addShade() {
 }
 
 function isInputValid (input) {
-
     if (isNaN(input)) {
         alert('You must enter a number between 1 and 100!');
         return false

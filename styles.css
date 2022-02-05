@@ -1,9 +1,11 @@
 :root {
     --main-ligh-color: #9FB0BF;
     --main-dark-color: #424A59;
-    --frame-color: #A6270A;
+    --frame-color: #50a60a;
     --letter-color: #F2F2F2;
 }
+
+/* #A6270A; */
 
 body {
     margin: 0;
@@ -63,4 +65,5 @@ body {
 
 .items {
     text-align: center;
+    background-color: rgb(255, 255, 255);
 }
