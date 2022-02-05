@@ -54,6 +54,7 @@ body {
 }
 
 #container {
+    cursor: crosshair;
     display: grid;
     grid-auto-rows: 1fr;
     height: 88vh;
