@@ -3,6 +3,8 @@ const container = document.querySelector('#container');
 makeGrid(16, 16);
 
 addInk();
+addShade();
+
 
 const clearButton = document.querySelector('#clear-button')
 clearButton.addEventListener('click', clearPad)
@@ -21,20 +23,33 @@ function makeGrid(rows, cols) {
 function clearPad() {
     container.textContent = '';
     let pixel = prompt('How many pixels do you want in one row? (0 to 100)');
-    console.log( isNaN(pixel));
     
     while (!isInputValid(pixel)) {
         pixel = prompt('How many pixels do you want in one row? (1 to 100)');
     }
     makeGrid(pixel, pixel);
     addInk();
+    addShade();
 }
 
 function addInk() {
     let gridItems = document.querySelectorAll('.items');
     gridItems.forEach((item) => {
+            item.style.backgroundColor = 'rgb( 255, 255, 255)';
+    })
+}
+
+function addShade() {
+    let gridItems = document.querySelectorAll('.items');
+    gridItems.forEach((item) => {
         item.addEventListener('mouseover', (e) => {
-            item.style.backgroundColor = 'black';
+            let splitBGColor = item.style.backgroundColor.split(/\(| |\)/);
+
+            let red = splitBGColor[1].slice(0, -1);
+            let green = splitBGColor[2].slice(0, -1);
+            let blue = splitBGColor[3]
+
+            item.style.backgroundColor = `rgb(${red - 22.5}, ${green - 22.5}, ${blue - 22.5})`;
             })
     })
 }
