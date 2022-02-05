@@ -21,8 +21,9 @@ function makeGrid(rows, cols) {
 function clearPad() {
     container.textContent = '';
     let pixel = prompt('How many pixels do you want in one row? (0 to 100)');
+    console.log( isNaN(pixel));
     
-    while (pixel < 1 || pixel > 100) {
+    while (!isInputValid(pixel)) {
         pixel = prompt('How many pixels do you want in one row? (1 to 100)');
     }
     makeGrid(pixel, pixel);
@@ -38,12 +39,15 @@ function addInk() {
     })
 }
 
-// function isInputValid () {
-//     let pixel = prompt('How many pixels do you want in one row? (0 to 100)');
+function isInputValid (input) {
 
-//     if ( pixel < 1 || pixel > 100) {
-//         return pixel
-//     } else {
-//         alert ('You must enter a number between 1 and 100!')
-//     }
-// }
+    if (isNaN(input)) {
+        alert('You must enter a number between 1 and 100!');
+        return false
+    } else if (input < 1 || input > 100) {
+        alert('You must enter a number between 1 and 100!');
+        return false
+    } else {
+        return true
+    }
+}
